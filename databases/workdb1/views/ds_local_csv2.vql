@@ -1,0 +1,60 @@
+﻿CREATE OR REPLACE WRAPPER DF ds_local_csv2
+    DATASOURCENAME=ds_local_csv2
+    OUTPUTSCHEMA (
+        region = 'Region',
+        country = 'Country',
+        itemtype_0 = 'Item Type',
+        saleschannel_0 = 'Sales Channel',
+        orderpriority_0 = 'Order Priority',
+        orderdate_0 = 'Order Date',
+        orderid_0 = 'Order ID',
+        shipdate_0 = 'Ship Date',
+        unitssold_0 = 'Units Sold',
+        unitprice_0 = 'Unit Price',
+        unitcost_0 = 'Unit Cost',
+        totalrevenue_0 = 'Total Revenue',
+        totalcost_0 = 'Total Cost',
+        totalprofit_0 = 'Total Profit'
+    );
+
+CREATE OR REPLACE TABLE ds_local_csv2 I18N jp (
+        region:text,
+        country:text,
+        itemtype_0:text,
+        saleschannel_0:text,
+        orderpriority_0:text,
+        orderdate_0:text,
+        orderid_0:text,
+        shipdate_0:text,
+        unitssold_0:text,
+        unitprice_0:text,
+        unitcost_0:text,
+        totalrevenue_0:text,
+        totalcost_0:text,
+        totalprofit_0:text
+    )
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_local_csv2(
+        I18N jp
+        CONSTRAINTS (
+             ADD region NOS ZERO ()
+             ADD country NOS ZERO ()
+             ADD itemtype_0 NOS ZERO ()
+             ADD saleschannel_0 NOS ZERO ()
+             ADD orderpriority_0 NOS ZERO ()
+             ADD orderdate_0 NOS ZERO ()
+             ADD orderid_0 NOS ZERO ()
+             ADD shipdate_0 NOS ZERO ()
+             ADD unitssold_0 NOS ZERO ()
+             ADD unitprice_0 NOS ZERO ()
+             ADD unitcost_0 NOS ZERO ()
+             ADD totalrevenue_0 NOS ZERO ()
+             ADD totalcost_0 NOS ZERO ()
+             ADD totalprofit_0 NOS ZERO ()
+        )
+        OUTPUTLIST (country, itemtype_0, orderdate_0, orderid_0, orderpriority_0, region, saleschannel_0, shipdate_0, totalcost_0, totalprofit_0, totalrevenue_0, unitcost_0, unitprice_0, unitssold_0
+        )
+        WRAPPER (df ds_local_csv2)
+    );
+
