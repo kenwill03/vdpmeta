@@ -1,0 +1,28 @@
+﻿CREATE OR REPLACE WRAPPER DF ds_local_csv
+    DATASOURCENAME=ds_local_csv
+    OUTPUTSCHEMA (
+        c1 = 'c1',
+        c2 = 'c2',
+        c3 = 'c3'
+    );
+
+CREATE OR REPLACE TABLE ds_local_csv I18N jp (
+        c1:text,
+        c2:text,
+        c3:text
+    )
+    DESCRIPTION = 'test1test'
+    CACHE OFF
+    TIMETOLIVEINCACHE DEFAULT
+    ADD SEARCHMETHOD ds_local_csv(
+        I18N jp
+        CONSTRAINTS (
+             ADD c1 NOS ZERO ()
+             ADD c2 NOS ZERO ()
+             ADD c3 NOS ZERO ()
+        )
+        OUTPUTLIST (c1, c2, c3
+        )
+        WRAPPER (df ds_local_csv)
+    );
+
