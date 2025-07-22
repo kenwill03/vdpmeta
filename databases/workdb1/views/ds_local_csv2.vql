@@ -33,6 +33,7 @@ CREATE OR REPLACE TABLE ds_local_csv2 I18N jp (
         totalcost_0:text,
         totalprofit_0:text
     )
+    DESCRIPTION = 'test1'
     CACHE OFF
     TIMETOLIVEINCACHE DEFAULT
     ADD SEARCHMETHOD ds_local_csv2(
